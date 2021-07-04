@@ -6,21 +6,22 @@ API_KEY = ''
 CITY = ''
 
 try:
-    API_KEY = os.environ['OPENWEATHER_API_KEY']
+    API_KEY = os.environ['OPENWEATHER_API_KEY'] # Read api key from env variable
 except Exception:
-    API_KEY = input('OPENWEATHER_API_KEY not exported in bash, please insert API key:')
+    API_KEY = print('OPENWEATHER_API_KEY not exported in bash, please insert API key:')
 
 try:
-    CITY = os.environ['CITY_NAME']
+    CITY = os.environ['CITY_NAME'] # Read City from env variable
 except Exception:
-    CITY = input('CITY_NAME not exported in bash, please insert CITY_NAME: ')
+    CITY = print('CITY_NAME not exported in bash, please insert CITY_NAME: ')
 
-owm = pyowm.OWM(API_KEY)
+owm = pyowm.OWM(API_KEY) # Initialize OWM
 manager= owm.weather_manager()
-location = manager.weather_at_place(CITY).weather
+location = manager.weather_at_place(CITY).weather # Set location for OWM
 
-print('source=openweathermap, city={0}, description="{1}", temp="{2}",\
-humidity="{3}"'.format(CITY,location.status,location.temperature(unit="celsius")['temp']\
+# Print results
+print('source=openweathermap, city={0}, description="{1}", temp={2:.1f}, \
+humidity={3}'.format(CITY,location.status,location.temperature(unit="fahrenheit")['temp']\
 ,location.humidity))
 
 

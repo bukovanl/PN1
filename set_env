@@ -1,0 +1,3 @@
+#!/bin/bash
+export OPENWEATHER_API_KEY="87d0f24673cb20cbda37754b71a96e6d"
+export CITY_NAME="Bratislava"
